@@ -22,10 +22,21 @@ difference() {
     translate([0, 0, -22]) cylinder(12, d=18, $fn=50);
         hull() {
             translate([0, 0, -10]) cylinder(1, d=7, $fn=50);
-            translate([0, 0, 0]) diamond();
+            scale([.75, .75, 1]) diamond();
         }
     }
 donut();
 }
 }
-pawn();
+module knight_wing() {
+rotate([90, 0, 45]) scale([.27, .2, 1]) linear_extrude(height = 1, center=true, convexity = 10) import(file = "wing.dxf");
+}
+module knight() {
+    pawn();
+    knight_wing();
+    rotate([0, 0, 90]) knight_wing();
+    rotate([0, 0, 180]) knight_wing();
+    rotate([0, 0, 270]) knight_wing();
+}
+
+knight();
