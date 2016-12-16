@@ -90,14 +90,14 @@ module rook_center_tower() {
 }
 
 module rook_buttress() {
-  translate([16, 0, 0]) cylinder(20, r=1.5, $fn=50);
-  translate([16, 0, 20]) cylinder(3, r1=1.5, r2=0, $fn=50);
-  translate([0, 0, 15]) rotate([90, 10, 0]) translate([1, 2, 0]) scale([.1, .1, 1]) linear_extrude(height = 1, center=true, convexity = 10) import(file = "buttress.dxf");
+  translate([14, 0, 0]) cylinder(20, r=2.5, $fn=80);
+  translate([14, 0, 20]) cylinder(3, r1=2.5, r2=0, $fn=50);
+  translate([0, 0, 15]) rotate([90, 10, 0]) translate([-2, 2, 0]) scale([.1, .1, 1]) linear_extrude(height = 1, center=true, convexity = 10) import(file = "buttress.dxf");
 }
 
 
 rook_center_tower();
-cylinder(1, r=18, $fn=100);
+cylinder(1, r=16.5, $fn=100);
 difference() {
   union() {
     rotate([0, 0, 45]) rook_buttress();
