@@ -39,4 +39,36 @@ module knight() {
     rotate([0, 0, 270]) knight_wing();
 }
 
-knight();
+//knight();
+
+module rook_crown() {
+    for (rot= [0:45:359]) {
+        rotate([0, 0, rot]) translate([0, 5.5, 0]) cube([2, 1, 2.5], center=true);
+    }
+}
+
+module rook() {
+union() {
+    cylinder(28, r=1, $fn=100);
+difference() {
+    union() {
+    translate([0, 0, 30]) rook_crown();
+    cylinder(30, r=6, $fn=100);
+    }
+    union() {
+        translate([0, 0, 27.9]) cylinder(5, r=5.5, $fn=100);
+        translate([0, 0, 3]) cylinder(28, r=4, $fn=100);
+        difference() {
+            cylinder(38, r=7, $fn=100);
+            cylinder(38, r=6, $fn=100);
+        }
+    }
+}
+for (height=[0:1:27]) {
+    rotate([0, 0, height * 15]) translate([-.5, 0, height]) cube([1.3, 4, 1]);
+
+}
+}
+}
+
+rook();
