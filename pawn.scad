@@ -8,12 +8,12 @@ module square_pyramid() {
 }
 module diamond() {
   square_pyramid();
-  rotate([0, 180]) {square_pyramid();}
+  rotate([0, 180]) scale([1, 1, 1.7]) square_pyramid();
 }
 module donut() {
   translate([0, 0, -14]) 
     rotate_extrude(convexity = 10, $fn = 100)
-    translate([9, 0, 0])
+    translate([9.6, 0, 0])
     circle(r = 6.8, $fn =100);
 }
 module pawn() {
@@ -21,7 +21,7 @@ module pawn() {
     union() {
       translate([0, 0, -22]) cylinder(12, d=18, $fn=50);
       hull() {
-        translate([0, 0, -10]) cylinder(1, d=7, $fn=50);
+        translate([0, 0, -10]) cylinder(1, d=8.2, $fn=50);
         scale([.75, .75, 1]) diamond();
       }
     }
@@ -32,11 +32,13 @@ module knight_wing() {
   rotate([90, 0, 45]) scale([.27, .2, 1]) linear_extrude(height = 1, center=true, convexity = 10) import(file = "wing.dxf");
 }
 module knight() {
+    union() {
   pawn();
-  knight_wing_wedge();
+      translate([0, -0.4, 2.6]) scale([.7, .8, .7]) knight_wing_wedge();
+    }
 }
 
-knight();
+translate([0, 0, 16]) knight();
 
 module rook_crown() {
   for (rot= [0:45:359]) {
@@ -93,6 +95,7 @@ module rook_buttress() {
 }
 
 module rook() {
+    scale([1, 1, 1.2]) union() {
 rook_center_tower();
 cylinder(1, r=16.5, $fn=100);
 difference() {
@@ -105,11 +108,14 @@ difference() {
   translate([0, 0, 3]) cylinder(28, r=4, $fn=100);
 }
 }
+}
+
+//rook();
 
 module knight_wing_wedge() {
 rotate([90, 0, 45]) scale([.27, .2, .15]) translate([0, 0, -83]) intersection() {
 linear_extrude(height = 120, convexity = 10) import(file = "wing.dxf");
-    translate([-20,0,120])rotate([0, 90, -20]) translate([0, 10, -10]) scale([0.6, 1, 1]) linear_extrude(height = 90, convexity = 10) import(file = "knight_wedge.dxf");
-    translate([10,200,120])rotate([10, 90, -90]) scale([0.6, 0.35, 1]) linear_extrude(height = 200, convexity = 10) import(file = "knight_wedge.dxf");
+    translate([-20,0,120])rotate([0, 90, -20]) translate([0, 10, -10]) scale([0.6, 1.2, 1]) linear_extrude(height = 90, convexity = 10) import(file = "knight_wedge.dxf");
+    translate([10,200,120])rotate([10, 90, -90]) scale([0.6, 0.4, 1]) linear_extrude(height = 200, convexity = 10) import(file = "knight_wedge.dxf");
 }
 }
