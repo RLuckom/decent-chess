@@ -33,13 +33,10 @@ module knight_wing() {
 }
 module knight() {
   pawn();
-  knight_wing();
-  rotate([0, 0, 90]) knight_wing();
-  rotate([0, 0, 180]) knight_wing();
-  rotate([0, 0, 270]) knight_wing();
+  knight_wing_wedge();
 }
 
-//knight();
+knight();
 
 module rook_crown() {
   for (rot= [0:45:359]) {
@@ -95,7 +92,7 @@ module rook_buttress() {
   translate([0, 0, 15]) rotate([90, 10, 0]) translate([-2, 2, 0]) scale([.1, .1, 1]) linear_extrude(height = 1, center=true, convexity = 10) import(file = "buttress.dxf");
 }
 
-
+module rook() {
 rook_center_tower();
 cylinder(1, r=16.5, $fn=100);
 difference() {
@@ -107,4 +104,12 @@ difference() {
   }
   translate([0, 0, 3]) cylinder(28, r=4, $fn=100);
 }
+}
 
+module knight_wing_wedge() {
+rotate([90, 0, 45]) scale([.27, .2, .15]) translate([0, 0, -83]) intersection() {
+linear_extrude(height = 120, convexity = 10) import(file = "wing.dxf");
+    translate([-20,0,120])rotate([0, 90, -20]) translate([0, 10, -10]) scale([0.6, 1, 1]) linear_extrude(height = 90, convexity = 10) import(file = "knight_wedge.dxf");
+    translate([10,200,120])rotate([10, 90, -90]) scale([0.6, 0.35, 1]) linear_extrude(height = 200, convexity = 10) import(file = "knight_wedge.dxf");
+}
+}
