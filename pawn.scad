@@ -149,10 +149,10 @@ scale([.25, .25, .3]) rotate_extrude(angle = 360, convexity = 2, $fn = 500) impo
 
 module bishop() {
 difference() {
-    linear_extrude(height=40, convexity=100, twist=400, $fn=600) flat_star();
+    linear_extrude(height=50, convexity=100, twist=400, $fn=600) flat_star();
 union() {
 difference() {
-bullet_cone();
+    scale([0.9, 0.9, 0.9]) bullet_cone();
     union() {
         translate([0, 0, 9]) cylinder(1, r=20);
         translate([0, 0, 19]) cylinder(1, r=20);
