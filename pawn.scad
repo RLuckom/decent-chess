@@ -144,7 +144,8 @@ rotate([0, 0, 90]) square([4, 20], center=true);
 }
 
 module bullet_cone() {
-scale([.25, .25, .3]) rotate_extrude(angle = 360, convexity = 2, $fn = 500) import(file = "bishop_outline.dxf");
+hull() {scale([.25, .25, .3]) rotate_extrude(angle = 360, convexity = 2, $fn = 500) import(file = "bishop_outline.dxf");
+}
 }
 
 module bishop() {
@@ -154,18 +155,22 @@ union() {
 difference() {
     scale([0.9, 0.9, 0.9]) bullet_cone();
     union() {
-        translate([0, 0, 9]) cylinder(1, r=20);
-        translate([0, 0, 19]) cylinder(1, r=20);
-        translate([0, 0, 29]) cylinder(1, r=20);
+        translate([0, 0, 3]) cylinder(1, r=20);
+        translate([0, 0, 5]) cylinder(1, r=20);
+        translate([0, 0, 8]) cylinder(1, r=20);
+        translate([0, 0, 12]) cylinder(1, r=20);
+        translate([0, 0, 18]) cylinder(1, r=20);
+        translate([0, 0, 27]) cylinder(1, r=20);
+        translate([0, 0, 41]) cylinder(1, r=20);
     }
 }
 translate([0, 0, 0]) difference() {
     scale([3, 3, 3]) bullet_cone();
-    scale([1.2, 1.2, 1.2]) bullet_cone();
+    scale([1.1, 1.1, 1.1]) bullet_cone();
 }
 }
 }
-cylinder(3, r=11, $fn=500);
+cylinder(2, r=11, $fn=100);
 }
 
 scale([.9, .9, 1.5]) bishop();
