@@ -37,8 +37,7 @@ module knight() {
       translate([0, -0.4, 2.6]) scale([.7, .8, .7]) knight_wing_wedge();
     }
 }
-
-translate([0, 0, 16]) knight();
+//knight();
 
 module rook_crown() {
   for (rot= [0:45:359]) {
@@ -119,3 +118,55 @@ linear_extrude(height = 120, convexity = 10) import(file = "wing.dxf");
     translate([10,200,120])rotate([10, 90, -90]) scale([0.6, 0.4, 1]) linear_extrude(height = 200, convexity = 10) import(file = "knight_wedge.dxf");
 }
 }
+
+module twist() {
+    for (height = [0:1:40]) {
+        rotate([0, 0, height * 10]) translate([0, 0, height]) star();
+    }
+}
+
+module star() {
+rotate([0, 36, 0]) cube([2, 9, 2]);
+rotate([0, 36, 45]) cube([2, 9, 1]);
+rotate([0, 36, 90]) cube([2, 9, 1]);
+rotate([0, 36, 135]) cube([2, 9, 2]);
+rotate([0, 36, 180]) cube([2, 9, 1]);
+rotate([0, 36, -45]) cube([2, 9, 1]);
+rotate([0, 36, -90]) cube([2, 9, 2]);
+rotate([0, 36, -135]) cube([2, 9, 1]);
+}
+
+module flat_star() {
+rotate([0, 0, -0]) square([4, 20], center=true);
+//rotate([0, 0, 45]) square([4, 20], center=true);
+rotate([0, 0, 90]) square([4, 20], center=true);
+//rotate([0, 0, 135]) square([4, 20], center=true);
+}
+
+module bullet_cone() {
+scale([.25, .25, .3]) rotate_extrude(angle = 360, convexity = 2, $fn = 500) import(file = "bishop_outline.dxf");
+}
+
+module bishop() {
+difference() {
+    linear_extrude(height=40, convexity=100, twist=400, $fn=600) flat_star();
+union() {
+difference() {
+bullet_cone();
+    union() {
+        translate([0, 0, 9]) cylinder(1, r=20);
+        translate([0, 0, 19]) cylinder(1, r=20);
+        translate([0, 0, 29]) cylinder(1, r=20);
+    }
+}
+translate([0, 0, 0]) difference() {
+    scale([3, 3, 3]) bullet_cone();
+    scale([1.2, 1.2, 1.2]) bullet_cone();
+}
+}
+}
+cylinder(3, r=11, $fn=500);
+}
+
+scale([.9, .9, 1.5]) bishop();
+//translate([0, 0, 22])knight();
