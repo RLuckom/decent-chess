@@ -20,13 +20,21 @@ module pawn() {
   translate([0, 0, 22]) difference() {
     union() {
       translate([0, 0, -22]) cylinder(12, d=18, $fn=50);
-      hull() {
-        translate([0, 0, -10]) cylinder(1, d=8.2, $fn=50);
-        scale([.75, .75, 1]) diamond();
-      }
+        pawn_top();
     }
     donut();
   }
+}
+
+module pawn_top() {
+    difference() {
+          hull() {
+        translate([0, 0, -10]) cylinder(1, d=8.2, $fn=50);
+        scale([.75, .75, 1]) diamond();
+      }
+      translate([0, 0, -25]) cylinder(15, d=20, $fn=50);
+  }
+      
 }
 module knight_wing() {
   rotate([90, 0, 45]) scale([.27, .2, 1]) linear_extrude(height = 1, center=true, convexity = 10) import(file = "wing.dxf");
@@ -176,7 +184,7 @@ module queen() {
   flyer(cylinder_height);
     }
     module flyer(cylinder_height) {
-        translate([0, 0, cylinder_height - 5]) rotate([90, 10, 0]) translate([-2, 2, 0]) scale([1, 1, 1.3]) scale([.1, .1, 1]) linear_extrude(height = 1, center=true, convexity = 10) import(file = "buttress.dxf");
+        translate([0, 0, cylinder_height - 5]) rotate([90, 10, 0]) translate([-2, 2, 0]) scale([1, 1, 1.3]) scale([.1, .1, 1]) linear_extrude(height = 2.3, center=true, convexity = 10) import(file = "buttress.dxf");
     }
     union() {
         cylinder(2, r=19, $fn=100 );
@@ -214,9 +222,9 @@ module king() {
     difference() {
     cylinder(50, d=18, $fn=80);
         union() {
-            for (height = [13:3:50]) {
-for (theta = [0:30:359]) {
-    rotate([0, 0, theta]) translate([7, 0, height]) cube([4, 2, 2]);
+            for (height = [13:2.5:50]) {
+for (theta = [0:15:359]) {
+rotate([0, 0, theta]) translate([7, 0, height]) rotate([-90, 0, 90]) scale([.1, .1, 1]) linear_extrude(height=5, convexity=10, center=true) projection() rotate([90, 0, 0]) pawn_top();
 }
 }
     translate([0, 0, -1]) cylinder(51, d=16, $fn=80);
@@ -234,3 +242,7 @@ for (theta = [0:30:359]) {
 //pawn();
 queen();
 //king();
+
+//pawn_top();
+
+ 
