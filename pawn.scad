@@ -215,8 +215,28 @@ rotate([0, 0, -84])  translate([3, 0, 58]) scale([1, 1.3, 2.5]) rotate([45, 0, 0
 }
 }
 
+module king() {
+    union() {
+    difference() {
+    cylinder(50, d=18, $fn=80);
+        union() {
+            for (height = [13:3:50]) {
+for (theta = [0:30:359]) {
+    rotate([0, 0, theta]) translate([7, 0, height]) cube([4, 2, 2]);
+}
+}
+    translate([0, 0, -1]) cylinder(51, d=16, $fn=80);
+    }
+}
+    cylinder(12, d=21, $fn=80);
+    translate([0, 0, 50]) pawn();
+
+}
+}
+
 //bishop();
 //knight();
 //rook();
 //pawn();
-queen();
+//queen();
+king();
