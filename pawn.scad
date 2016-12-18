@@ -176,17 +176,17 @@ module queen() {
   flyer(cylinder_height);
     }
     module flyer(cylinder_height) {
-        translate([0, 0, cylinder_height - 5]) rotate([90, 10, 0]) translate([-2, 2, 0]) scale([.1, .1, 1]) linear_extrude(height = 1, center=true, convexity = 10) import(file = "buttress.dxf");
+        translate([0, 0, cylinder_height - 5]) rotate([90, 10, 0]) translate([-2, 2, 0]) scale([1, 1, 1.3]) scale([.1, .1, 1]) linear_extrude(height = 1, center=true, convexity = 10) import(file = "buttress.dxf");
     }
     union() {
-        cylinder(2, r=23, $fn=100 );
+        cylinder(2, r=19, $fn=100 );
     difference() {
         union() {
         cylinder(65, r=6, $fn=80);
-            rotate([0, 0, 6]) translate([3, 0, 58]) scale([1, 1.3, 2.5]) rotate([45, 0, 0]) cube(4);
-rotate([0, 0, -23])  translate([3, 0, 58]) scale([1, 1.3, 2.5]) rotate([45, 0, 0]) cube(4);
-rotate([0, 0, -58])  translate([3, 0, 58]) scale([1, 1.3, 2.5]) rotate([45, 0, 0]) cube(4);
-rotate([0, 0, -84])  translate([3, 0, 58]) scale([1, 1.3, 2.5]) rotate([45, 0, 0]) cube(4);
+            rotate([0, 0, 6]) translate([3, 0, 58]) scale([1, 0.6, 2.5]) rotate([45, 0, 0]) cube(4);
+rotate([0, 0, -24])  translate([3, 0, 58]) scale([1, 0.6, 2.5]) rotate([45, 0, 0]) cube(4);
+rotate([0, 0, -57])  translate([3, 0, 58]) scale([1, 0.6, 2.5]) rotate([45, 0, 0]) cube(4);
+rotate([0, 0, -89])  translate([3, 0, 58]) scale([1, 0.6, 2.5]) rotate([45, 0, 0]) cube(4);
         }
         union() {
         translate([0,0,-1]) cylinder(80, r=4, $fn=80);
@@ -197,21 +197,15 @@ rotate([0, 0, -84])  translate([3, 0, 58]) scale([1, 1.3, 2.5]) rotate([45, 0, 0
         translate([0, 0, -1]) rotate([0, 0, 180]) linear_extrude(height=78, convexity = 2, twist=470, $fn=100) translate([6, 0, 0]) circle(9);
         }
     }
-    rotate([0, 0, -45]) translate([5.2, 0, 0]) buttress(57);
-    rotate([0, 0, 0]) translate([5.2, 0, 0]) buttress(51);
-    rotate([0, 0, 45]) translate([5.2, 0, 0]) buttress(42);
-    rotate([0, 0, 90]) translate([5.2, 0, 0]) buttress(36);
-    rotate([0, 0, 135]) translate([5.2, 0, 0]) buttress(29);
-    rotate([0, 0, 180]) translate([5.2, 0, 0]) buttress(22);
-    rotate([0, 0, 225]) translate([5.2, 0, 0]) buttress(15);
-    rotate([0, 0, 270]) translate([5.2, 0, 0]) buttress(8);
-    rotate([0, 0, -40]) translate([0, -19, 2]) rotate([0, 0, 18]) scale([.9, .9, .9]) flyer();
-    rotate([0, 0, -85]) translate([0, -19, 10]) rotate([0, 0, 18]) scale([.9, .9, .9]) flyer();
-    rotate([0, 0, -130]) translate([0, -19, 17]) rotate([0, 0, 20]) scale([.9, .9, .9]) flyer();
-    rotate([0, 0, -175]) translate([0, -19, 24]) rotate([0, 0, 20]) scale([.9, .9, .9]) flyer();
-    rotate([0, 0, -220]) translate([0, -19, 30]) rotate([0, 0, 20]) scale([.9, .9, .9]) flyer();
-    rotate([0, 0, -265]) translate([0, -19, 37]) rotate([0, 0, 20]) scale([.9, .9, .9]) flyer();
-    rotate([0, 0, -310]) translate([0, -19, 45]) rotate([0, 0, 20]) scale([.9, .9, .9]) flyer();
+    difference() {
+        union() {
+    rotate([0, 0, 0]) translate([1, 0, 0]) buttress(54);
+    rotate([0, 0, 90]) translate([1, 0, 0]) buttress(42);
+    rotate([0, 0, 180]) translate([1, 0, 0]) buttress(26);
+    rotate([0, 0, 270]) translate([1, 0, 0]) buttress(12);
+        }
+        cylinder(65, r=5, $fn=80);
+    }
 }
 }
 
@@ -238,5 +232,5 @@ for (theta = [0:30:359]) {
 //knight();
 //rook();
 //pawn();
-//queen();
-king();
+queen();
+//king();
