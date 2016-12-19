@@ -132,10 +132,10 @@ module bullet_cone() {
 module bishop() {
   scale([.9, .9, 1.5]) union() {
     difference() {
-      linear_extrude(height=50, convexity=100, twist=500, $fn=200) rotate([0, 0, -0]) square([4, 20], center=true);
+      linear_extrude(height=50, convexity=100, twist=500, $fn=200) rotate([0, 0, -0]) square([6, 20], center=true);
       union() {
         difference() {
-          scale([0.9, 0.9, 0.9]) bullet_cone();
+          scale([0.7, 0.7, 0.9]) bullet_cone();
           union() {
             translate([0, 0, 3]) cylinder(1, r=20);
             translate([0, 0, 5]) cylinder(1, r=20);
@@ -153,10 +153,10 @@ module bishop() {
       }
     }
     difference() {
-      linear_extrude(height=50, convexity=100, twist=500, $fn=200) rotate([0, 0, 90]) square([4, 20], center=true);
+      linear_extrude(height=50, convexity=100, twist=500, $fn=200) rotate([0, 0, 90]) square([6, 20], center=true);
       union() {
         difference() {
-          scale([0.9, 0.9, 0.9]) bullet_cone();
+          scale([0.7, 0.7, 0.9]) bullet_cone();
           union() {
             translate([0, 0, 4]) cylinder(1, r=20);
             translate([0, 0, 6]) cylinder(1, r=20);
@@ -236,11 +236,11 @@ rotate([0, 0, theta]) translate([7, 0, height]) rotate([-90, 0, 90]) scale([.1, 
 }
 }
 
-//bishop();
+bishop();
 //knight();
 //rook();
 //pawn();
-queen();
+//queen();
 //king();
 
 //pawn_top();
