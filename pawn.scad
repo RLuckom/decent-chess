@@ -179,13 +179,14 @@ module bishop() {
 
 module queen() {
     module buttress(cylinder_height=20) {
-  translate([14, 0, 0]) cylinder(cylinder_height, r=3.5, $fn=80);
-  translate([14, 0, cylinder_height]) cylinder(3, r1=3.5, r2=0, $fn=50);
+  translate([14, 0, 0]) cylinder(cylinder_height, r=3, $fn=80);
+  translate([14, 0, cylinder_height]) cylinder(3, r1=3, r2=0, $fn=50);
   flyer(cylinder_height);
     }
     module flyer(cylinder_height) {
         translate([0, 0, cylinder_height - 15]) rotate([90, 10, 0]) translate([-2.9, 2, 0]) scale([1, 1, 1.3]) scale([.1, .2, 1]) linear_extrude(height = 2.3, center=true, convexity = 10) import(file = "buttress.dxf");
     }
+    difference() {
     union() {
         cylinder(2, r=19, $fn=100 );
     difference() {
@@ -202,18 +203,23 @@ rotate([0, 0, -89])  translate([3, 0, 58]) scale([1, 0.6, 2.5]) rotate([45, 0, 0
         translate([0,0,-1]) cylinder(80, r=15, $fn=80);
             translate([0,0,-1]) cylinder(80, r=6, $fn=80);
         }
-        translate([0, 0, -1]) rotate([0, 0, 180]) linear_extrude(height=78, convexity = 2, twist=470, $fn=100) translate([6, 0, 0]) circle(9);
         }
     }
     difference() {
         union() {
-    rotate([0, 0, 45]) translate([1, 0, 0]) buttress(48);
-    rotate([0, 0, 135]) translate([1, 0, 0]) buttress(34);
-    rotate([0, 0, 225]) translate([1, 0, 0]) buttress(18);
-    //rotate([0, 0, 270]) translate([1, 0, 0]) buttress(12);
+    rotate([0, 0, 45]) translate([0.9, 0, 0]) buttress(44);
+    rotate([0, 0, 135]) translate([0.9, 0, 0]) buttress(31);
+    rotate([0, 0, 225]) translate([0.9, 0, 0]) buttress(18);
         }
-        cylinder(65, r=5, $fn=80);
+        cylinder(65, r=4, $fn=80);
     }
+}
+union() {
+    rotate([0,0, 225]) translate([6,0,21.1]) scale([1, 1.6, 1.6]) rook_window();
+        rotate([0,0, 135]) translate([6,0,34.1]) scale([1, 1.6, 1.6]) rook_window();
+        rotate([0,0, 45]) translate([6,0,47.1]) scale([1, 1.6, 1.6]) rook_window();
+            translate([0, 0, -1]) rotate([0, 0, 180]) linear_extrude(height=78, convexity = 2, twist=470, $fn=100) translate([6, 0, 0]) circle(9);
+}
 }
 }
 
@@ -241,8 +247,9 @@ rotate([0, 0, theta]) translate([7, 0, height]) rotate([-90, 0, 90]) scale([.1, 
 //rook();
 //pawn();
 queen();
+//rotate([0,0,-130]) translate([4,0,9]) rook_window();
 //king();
-
+//rook_window();
 //pawn_top();
 
  
