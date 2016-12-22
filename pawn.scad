@@ -20,21 +20,21 @@ module pawn() {
   translate([0, 0, 22]) difference() {
     union() {
       translate([0, 0, -22]) cylinder(12, d=18, $fn=50);
-        pawn_top();
+      pawn_top();
     }
     donut();
   }
 }
 
 module pawn_top() {
-    difference() {
-          hull() {
-        translate([0, 0, -10]) cylinder(1, d=8.2, $fn=50);
-        scale([.75, .75, 1]) diamond();
-      }
-      translate([0, 0, -25]) cylinder(15, d=20, $fn=50);
+  difference() {
+    hull() {
+      translate([0, 0, -10]) cylinder(1, d=8.2, $fn=50);
+      scale([.75, .75, 1]) diamond();
+    }
+    translate([0, 0, -25]) cylinder(15, d=20, $fn=50);
   }
-      
+
 }
 module knight_wing() {
   rotate([90, 0, 45]) scale([.27, .2, 1]) linear_extrude(height = 1, center=true, convexity = 10) import(file = "wing.dxf");
@@ -133,88 +133,129 @@ module bishop() {
   scale([.9, .9, 1.5])
     difference() {
       linear_extrude(height=50, convexity=100, twist=270, $fn=200) {
-          union() {
-              square([5, 20], center=true);
-              rotate([0, 0, 90]) square([4.5, 20], center=true);
-          }
+        union() {
+          square([5, 20], center=true);
+          rotate([0, 0, 90]) square([4.5, 20], center=true);
+        }
       }
       union() {
-          scale([0.7, 0.7, 0.9]) bullet_cone();
+        scale([0.7, 0.7, 0.9]) bullet_cone();
         translate([0, 0, 0]) difference() {
           scale([3, 3, 3]) bullet_cone();
           scale([1.1, 1.1, 1.1]) bullet_cone();
         }
       }
     }
-    cylinder(2, r=11, $fn=100);
+  cylinder(2, r=11, $fn=100);
 }
 
 module queen() {
-    module buttress(cylinder_height=20) {
-  translate([14, 0, 0]) cylinder(cylinder_height, r=3, $fn=80);
-  translate([14, 0, cylinder_height]) cylinder(3, r1=3, r2=0, $fn=50);
-  flyer(cylinder_height);
-    }
-    module flyer(cylinder_height) {
-        translate([0, 0, cylinder_height - 15]) rotate([90, 10, 0]) translate([-2.9, 2, 0]) scale([1, 1, 1.3]) scale([.1, .2, 1]) linear_extrude(height = 2.3, center=true, convexity = 10) import(file = "buttress.dxf");
-    }
-    difference() {
+  module buttress(cylinder_height=20) {
+    translate([14, 0, 0]) cylinder(cylinder_height, r=3, $fn=80);
+    translate([14, 0, cylinder_height]) cylinder(3, r1=3, r2=0, $fn=50);
+    flyer(cylinder_height);
+  }
+  module flyer(cylinder_height) {
+    translate([0, 0, cylinder_height - 15]) rotate([90, 10, 0]) translate([-2.9, 2, 0]) scale([1, 1, 1.3]) scale([.1, .2, 1]) linear_extrude(height = 2.3, center=true, convexity = 10) import(file = "buttress.dxf");
+  }
+  difference() {
     union() {
-        cylinder(2, r=19, $fn=100 );
-    difference() {
+      cylinder(2, r=19, $fn=100 );
+      difference() {
         union() {
-        cylinder(65, r=6, $fn=80);
-            rotate([0, 0, 6]) translate([3, 0, 58]) scale([1, 0.6, 2.5]) rotate([45, 0, 0]) cube(4);
-rotate([0, 0, -24])  translate([3, 0, 58]) scale([1, 0.6, 2.5]) rotate([45, 0, 0]) cube(4);
-rotate([0, 0, -57])  translate([3, 0, 58]) scale([1, 0.6, 2.5]) rotate([45, 0, 0]) cube(4);
-rotate([0, 0, -89])  translate([3, 0, 58]) scale([1, 0.6, 2.5]) rotate([45, 0, 0]) cube(4);
+          cylinder(65, r=6, $fn=80);
+          rotate([0, 0, 6]) translate([3, 0, 58]) scale([1, 0.6, 2.5]) rotate([45, 0, 0]) cube(4);
+          rotate([0, 0, -24])  translate([3, 0, 58]) scale([1, 0.6, 2.5]) rotate([45, 0, 0]) cube(4);
+          rotate([0, 0, -57])  translate([3, 0, 58]) scale([1, 0.6, 2.5]) rotate([45, 0, 0]) cube(4);
+          rotate([0, 0, -89])  translate([3, 0, 58]) scale([1, 0.6, 2.5]) rotate([45, 0, 0]) cube(4);
         }
         union() {
-        translate([0,0,-1]) cylinder(80, r=4, $fn=80);
-            difference() {
-        translate([0,0,-1]) cylinder(80, r=15, $fn=80);
+          translate([0,0,-1]) cylinder(80, r=4, $fn=80);
+          difference() {
+            translate([0,0,-1]) cylinder(80, r=15, $fn=80);
             translate([0,0,-1]) cylinder(80, r=6, $fn=80);
+          }
         }
-        }
-    }
-    difference() {
+      }
+      difference() {
         union() {
-    rotate([0, 0, 45]) translate([0.9, 0, 0]) buttress(44);
-    rotate([0, 0, 135]) translate([0.9, 0, 0]) buttress(31);
-    rotate([0, 0, 225]) translate([0.9, 0, 0]) buttress(18);
+          rotate([0, 0, 45]) translate([0.9, 0, 0]) buttress(44);
+          rotate([0, 0, 135]) translate([0.9, 0, 0]) buttress(31);
+          rotate([0, 0, 225]) translate([0.9, 0, 0]) buttress(18);
         }
         cylinder(65, r=4, $fn=80);
+      }
     }
-}
-union() {
-    rotate([0,0, 225]) translate([6,0,21.1]) scale([1, 1.6, 1.6]) rook_window();
-        rotate([0,0, 135]) translate([6,0,34.1]) scale([1, 1.6, 1.6]) rook_window();
-        rotate([0,0, 45]) translate([6,0,47.1]) scale([1, 1.6, 1.6]) rook_window();
-            translate([0, 0, -1]) rotate([0, 0, 180]) linear_extrude(height=78, convexity = 2, twist=470, $fn=100) translate([6, 0, 0]) circle(9);
-}
-}
+    union() {
+      rotate([0,0, 225]) translate([6,0,21.1]) scale([1, 1.6, 1.6]) rook_window();
+      rotate([0,0, 135]) translate([6,0,34.1]) scale([1, 1.6, 1.6]) rook_window();
+      rotate([0,0, 45]) translate([6,0,47.1]) scale([1, 1.6, 1.6]) rook_window();
+      translate([0, 0, -1]) rotate([0, 0, 180]) linear_extrude(height=78, convexity = 2, twist=470, $fn=100) translate([6, 0, 0]) circle(9);
+    }
+  }
 }
 
 module king() {
-    union() {
+  union() {
     difference() {
-    cylinder(50, d=18, $fn=80);
-        union() {
-            for (height = [13:2.5:50]) {
-for (theta = [0:15:359]) {
-rotate([0, 0, theta]) translate([7, 0, height]) rotate([-90, 0, 90]) scale([.1, .1, 1]) linear_extrude(height=5, convexity=10, center=true) projection() rotate([90, 0, 0]) pawn_top();
-}
-}
-    translate([0, 0, -1]) cylinder(51, d=16, $fn=80);
+      cylinder(50, d=18, $fn=80);
+      union() {
+        for (height = [13:2.5:50]) {
+          for (theta = [0:15:359]) {
+            rotate([0, 0, theta]) translate([7, 0, height]) rotate([-90, 0, 90]) scale([.1, .1, 1]) linear_extrude(height=5, convexity=10, center=true) projection() rotate([90, 0, 0]) pawn_top();
+          }
+        }
+        translate([0, 0, -1]) cylinder(51, d=16, $fn=80);
+      }
     }
-}
     cylinder(12, d=21, $fn=80);
     translate([0, 0, 50]) pawn();
 
-}
+  }
 }
 
-bishop();
+module bell() {
+   rotate([0, 180, 0]) rotate_extrude(convexity = 10, $fn = 100) rotate([0, 0, 180]) translate([45, 0, 0]) rotate([0, 180, 0]) translate([-40, 0, 0]) import(file="flower.dxf");
+}
+
+module bell_flower() {
+    bell();
+    scale([.9, .9, 1]) translate([0, 0, 100]) bell();
+    scale([.8, .8, 1]) translate([0, 0, 200]) bell();
+    scale([.6, .6, 1]) translate([0, 0, 300]) bell();
+}
+
+module cage() {
+      rotate_extrude(convexity = 10, $fn = 100) import(file="flower.dxf");
+}
+
+module new_bishop() {
+    cylinder(2, r=16, $fn=100);
+    translate([0,0,2]) scale([.1, .1, .1]) union() {
+    intersection() {
+    difference() {
+    scale([4, 4, 5.5]) rotate_extrude(angle = 360, convexity = 2, $fn = 200) import(file = "bishop_outline.dxf");
+        scale([3.8, 3.8, 5.0]) rotate_extrude(angle = 360, convexity = 2, $fn = 200) import(file = "bishop_outline.dxf");
+    }
+    for(height = [0:50:650]) {
+    translate([0, 0, height]) cylinder(12, r=200);
+    }
+}
+    intersection() {
+    difference() {
+    scale([4, 4, 5.5]) rotate_extrude(angle = 360, convexity = 2, $fn = 200) import(file = "bishop_outline.dxf");
+        scale([3.6, 3.6, 5.0]) rotate_extrude(angle = 360, convexity = 2, $fn = 200) import(file = "bishop_outline.dxf");
+    }
+    for(x = [0:22.5:170]) {
+    rotate([0, 0, x]) rotate([0, 90, 0]) cylinder(12, r=700, center=true);
+    }
+}
+    bell_flower();
+}
+}
+new_bishop();
+
+//bishop();
 //knight();
 //rook();
 //pawn();
@@ -224,4 +265,4 @@ bishop();
 //rook_window();
 //pawn_top();
 
- 
+
