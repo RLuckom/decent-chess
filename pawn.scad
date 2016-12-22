@@ -230,12 +230,12 @@ module cage() {
 }
 
 module new_bishop() {
-    cylinder(2, r=16, $fn=100);
-    translate([0,0,2]) scale([.1, .1, .1]) union() {
+    cylinder(2, r=10, $fn=100);
+    translate([0,0,2]) scale([.06, .06, .09]) union() {
     intersection() {
     difference() {
     scale([4, 4, 5.5]) rotate_extrude(angle = 360, convexity = 2, $fn = 200) import(file = "bishop_outline.dxf");
-        scale([3.8, 3.8, 5.0]) rotate_extrude(angle = 360, convexity = 2, $fn = 200) import(file = "bishop_outline.dxf");
+        scale([3.6, 3.6, 5.0]) rotate_extrude(angle = 360, convexity = 2, $fn = 200) import(file = "bishop_outline.dxf");
     }
     for(height = [0:50:650]) {
     translate([0, 0, height]) cylinder(12, r=200);
@@ -247,7 +247,7 @@ module new_bishop() {
         scale([3.6, 3.6, 5.0]) rotate_extrude(angle = 360, convexity = 2, $fn = 200) import(file = "bishop_outline.dxf");
     }
     for(x = [0:22.5:170]) {
-    rotate([0, 0, x]) rotate([0, 90, 0]) cylinder(12, r=700, center=true);
+    rotate([0, 0, x]) rotate([0, 90, 0]) cylinder(20, r=700, center=true);
     }
 }
     bell_flower();
@@ -259,9 +259,9 @@ new_bishop();
 //knight();
 //rook();
 //pawn();
-//queen();
+//translate([40, 0, 0]) queen();
 //rotate([0,0,-130]) translate([4,0,9]) rook_window();
-//king();
+//translate([80, 0, 0]) king();
 //rook_window();
 //pawn_top();
 
