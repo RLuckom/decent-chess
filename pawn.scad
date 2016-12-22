@@ -132,10 +132,10 @@ module bullet_cone() {
 module bishop() {
   scale([.9, .9, 1.5])
     difference() {
-      linear_extrude(height=50, convexity=100, twist=500, $fn=200) {
+      linear_extrude(height=50, convexity=100, twist=270, $fn=200) {
           union() {
-              square([6, 20], center=true);
-              rotate([0, 0, 90]) square([6, 20], center=true);
+              square([5, 20], center=true);
+              rotate([0, 0, 90]) square([4.5, 20], center=true);
           }
       }
       union() {
