@@ -130,43 +130,16 @@ module bullet_cone() {
 }
 
 module bishop() {
-  scale([.9, .9, 1.5]) union() {
+  scale([.9, .9, 1.5])
     difference() {
-      linear_extrude(height=50, convexity=100, twist=500, $fn=200) rotate([0, 0, -0]) square([6, 20], center=true);
-      union() {
-        difference() {
-          scale([0.7, 0.7, 0.9]) bullet_cone();
+      linear_extrude(height=50, convexity=100, twist=500, $fn=200) {
           union() {
-            translate([0, 0, 3]) cylinder(1, r=20);
-            translate([0, 0, 5]) cylinder(1, r=20);
-            translate([0, 0, 8]) cylinder(1, r=20);
-            translate([0, 0, 12]) cylinder(1, r=20);
-            translate([0, 0, 18]) cylinder(1, r=20);
-            translate([0, 0, 27]) cylinder(1, r=20);
-            translate([0, 0, 41]) cylinder(1, r=20);
+              square([6, 20], center=true);
+              rotate([0, 0, 90]) square([6, 20], center=true);
           }
-        }
-        translate([0, 0, 0]) difference() {
-          scale([3, 3, 3]) bullet_cone();
-          scale([1.1, 1.1, 1.1]) bullet_cone();
-        }
       }
-    }
-    difference() {
-      linear_extrude(height=50, convexity=100, twist=500, $fn=200) rotate([0, 0, 90]) square([6, 20], center=true);
       union() {
-        difference() {
           scale([0.7, 0.7, 0.9]) bullet_cone();
-          union() {
-            translate([0, 0, 4]) cylinder(1, r=20);
-            translate([0, 0, 6]) cylinder(1, r=20);
-            translate([0, 0, 9]) cylinder(1, r=20);
-            translate([0, 0, 13]) cylinder(1, r=20);
-            translate([0, 0, 19]) cylinder(1, r=20);
-            translate([0, 0, 28]) cylinder(1, r=20);
-            translate([0, 0, 42]) cylinder(1, r=20);
-          }
-        }
         translate([0, 0, 0]) difference() {
           scale([3, 3, 3]) bullet_cone();
           scale([1.1, 1.1, 1.1]) bullet_cone();
@@ -174,7 +147,6 @@ module bishop() {
       }
     }
     cylinder(2, r=11, $fn=100);
-  }
 }
 
 module queen() {
@@ -242,11 +214,11 @@ rotate([0, 0, theta]) translate([7, 0, height]) rotate([-90, 0, 90]) scale([.1, 
 }
 }
 
-//bishop();
+bishop();
 //knight();
 //rook();
 //pawn();
-queen();
+//queen();
 //rotate([0,0,-130]) translate([4,0,9]) rook_window();
 //king();
 //rook_window();
