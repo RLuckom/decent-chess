@@ -149,6 +149,23 @@ module bishop() {
   cylinder(2, r=11, $fn=100);
 }
 
+module twisted_bishop() {
+    twist = 720;
+      linear_extrude(height=75, convexity=100, twist=twist, $fn=200) {
+          translate([7, 0, 0]) circle(3);
+      }
+      mirror() linear_extrude(height=75, convexity=100, twist=twist, $fn=200) {
+          translate([7, 0, 0]) circle(3);
+      }
+       rotate([0, 0, 180]) linear_extrude(height=75, convexity=100, twist=twist, $fn=200) {
+          translate([7, 0, 0]) circle(3);
+      }
+      mirror() rotate([0, 0, 180]) linear_extrude(height=75, convexity=100, twist=twist, $fn=200) {
+          translate([7, 0, 0]) circle(3);
+      }
+  cylinder(2, r=11, $fn=100);
+}
+
 module queen() {
   module buttress(cylinder_height=20) {
     translate([14, 0, 0]) cylinder(cylinder_height, r=3, $fn=80);
@@ -254,10 +271,12 @@ module new_bishop() {
     bell_flower();
 }
 }
-new_bishop();
+
+
+//new_bishop();
 //scale([.06, .06, .09]) bell_flower();
 //bell();
-
+twisted_bishop();
 //bishop();
 //knight();
 //rook();
