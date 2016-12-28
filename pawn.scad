@@ -150,20 +150,19 @@ module bishop() {
 }
 
 module twisted_bishop() {
-    twist = 720;
-      linear_extrude(height=75, convexity=100, twist=twist, $fn=200) {
-          translate([7, 0, 0]) circle(3);
+    twist = 425;
+    post_rad = 1.6;
+    post_dist = 5;
+    height = 60;
+    for (start = [0, 90, 270, 180]) {
+      rotate([0, 0, start]) linear_extrude(height=height, convexity=100, twist=twist, $fn=200) {
+          translate([post_dist, 0, 0]) circle(post_rad);
       }
-      mirror() linear_extrude(height=75, convexity=100, twist=twist, $fn=200) {
-          translate([7, 0, 0]) circle(3);
+      mirror() rotate([0, 0, start]) linear_extrude(height=height, convexity=100, twist=twist, $fn=200) {
+          translate([post_dist, 0, 0]) circle(post_rad);
       }
-       rotate([0, 0, 180]) linear_extrude(height=75, convexity=100, twist=twist, $fn=200) {
-          translate([7, 0, 0]) circle(3);
-      }
-      mirror() rotate([0, 0, 180]) linear_extrude(height=75, convexity=100, twist=twist, $fn=200) {
-          translate([7, 0, 0]) circle(3);
-      }
-  cylinder(2, r=11, $fn=100);
+  }
+  cylinder(2, r=8, $fn=100);
 }
 
 module queen() {
@@ -272,13 +271,33 @@ module new_bishop() {
 }
 }
 
-
+module dna() {
+linear_extrude(height=60, twist=360, $fn=90) {
+union() {
+    translate([0, 5, 0], $fn=100) circle(2.5);
+    translate([0, -5, 0], $fn=100) circle(2.5);
+}
+}
+     for (height=[1:4:59]) {
+         translate([0, 0, height]) rotate([90, 0, -360 * (height / 60.0)]) cylinder(10, r=1, center=true, $fn=40);
+     }
+ }
+ 
+ module helix_bishop() {
+     cylinder(2, r=8, $fn=100);
+     dna();
+ }
+ 
+ //translate([-10, 0, 0]) helix_bishop();
+ translate([10, 0, 0]) mirror() helix_bishop();
+ 
+ 
 //new_bishop();
 //scale([.06, .06, .09]) bell_flower();
 //bell();
-twisted_bishop();
+//twisted_bishop();
 //bishop();
-//knight();
+//translate([-40, 0, 0]) knight();
 //rook();
 //pawn();
 //translate([40, 0, 0]) queen();
