@@ -288,8 +288,16 @@ union() {
      dna();
  }
  
- //translate([-10, 0, 0]) helix_bishop();
- translate([10, 0, 0]) mirror() helix_bishop();
+ 
+ module full_set() {
+ pawn();
+ translate([30, 0, 0]) rook();
+ translate([60, 0, 0]) knight();
+ translate([90, 0, 0]) helix_bishop();
+ translate([120, 0, 0]) queen();
+ translate([150, 0, 0]) king();
+ }
+ //translate([10, 0, 0]) mirror() helix_bishop();
  
  
 //new_bishop();
