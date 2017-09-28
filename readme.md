@@ -9,6 +9,10 @@ I made the models in openscad, used Cura to slice them, and printed
 them on a Prusa i3 built from a kit. I started out with an idea for each piece
 and revised it according to aesthetics and printability.
 
+## Highlights
+
+https://github.com/RLuckom/decent-chess/blob/master/full_set.stl
+
 ## Lessons learned
 
 1. If a design has even a single element that is near the technical limits of
