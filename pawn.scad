@@ -218,7 +218,7 @@ module king() {
       union() {
         for (height = [13:2.5:50]) {
           for (theta = [0:15:359]) {
-            rotate([0, 0, theta]) translate([7, 0, height]) rotate([-90, 0, 90]) scale([.1, .1, 1]) linear_extrude(height=5, convexity=10, center=true) projection() rotate([90, 0, 0]) pawn_top();
+            rotate([0, 0, theta]) translate([7, 0, height]) cube([2, 1.4, 1.4]);
           }
         }
         translate([0, 0, -1]) cylinder(51, d=16, $fn=80);
@@ -297,6 +297,8 @@ union() {
  translate([120, 0, 0]) queen();
  translate([150, 0, 0]) king();
  }
+ 
+ king();
  //translate([10, 0, 0]) mirror() helix_bishop();
  
  
